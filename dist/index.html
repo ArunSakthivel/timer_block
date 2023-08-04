@@ -4,86 +4,92 @@
 		<title>CountDown</title>
 	</head>
 	<body>
-        <article class="slds-card">
-            <div class="relative h-0 flex-1 flex flex-col overflow-y-autoxxx">
-                <!-- Form -->
-                <form method="put" class="flex-grow flex flex-col" phx-change="validate" phx-submit="save">
-        
-                  <div class="flex-grow flex flex-col bg-gray-800xxx">
-                    <div class="relative w-full overflow-x-hiddenxxx flex-grow" x-data="{navStack: ['root']}" style="height:50vh; min-height:40rem">
-        
-                      <style>
-                        .nav-stack-item {
-                          transition-duration: 300ms; transition-property: transform, opacity;
-                          opacity: 1;
-                        }
-                        
-                        .nav-stack-item-1 {
-                          transform: translateY(-2.2rem) scale(0.9);
-                          background-color: rgb(17, 22, 30);
-                        }
-                        .nav-stack-item-2 {
-                         transform: translateY(-3.2rem) scale(0.8);
-                         background-color: rgb(6, 7, 10);
-                       }
-                        .nav-stack-item.nav-stack-item--1 {
-                          transform: translateX(400px);
-                          opacity: 0;
-                          pointer-events: none;
-                        }
-                      </style>
-        
-                    <div x-showxxx="navStack.includes('root')" class="absolute flex flex-col bg-gray-800 rounded-xl w-full origin-top shadow-xl nav-stack-item ring-1 ring-black/70 h-full pb-4 nav-stack-item-0" style="transition-property: transform, opacity, margin-left;" x-bind:class="'nav-stack-item-' + navStack.indexOf('root')" x-bind:stylexxx="'transition-duration: 200ms; transition-property: transform, opacity;' + (navStack.includes('root') ? 'transform: translateY(' + (-1 * navStack.indexOf('root')) + 'rem) scale(' + (1 - (0.1 * navStack.indexOf('root'))) + ');  ' : 'transform: translateY(500px)')" stylexxx="transition-duration: 200ms; transition-property: transform, opacity;transform: translateY(0rem) scale(1);  ">
-                      <div class="p-2 py-3 border-b border-b-gray-900 text-gray-500 flex items-center justify-end"><div class="flex-grow">General Settings </div>
-        
+    <style>
+      body {
+        padding: 50px;
+        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+      }
+      .slds-card {
+        height: 100%;
+        border-radius: 5px;
+        font-family: 'Source Sans Pro';
+        color: #000000;
+        text-align: center;
+        background-color: #87a9fe;
+        background-size: cover, auto;
+        background-position: center, center;
+        background-repeat: no-repeat, no-repeat;
+      }
+      .relative {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+      }
+    </style>
+      <article class="slds-card">
+        <div class="relative h-0 flex-1 flex flex-col overflow-y-auto">
+          <!-- Form -->
+          <form method="put" class="flex-grow flex flex-col">
+            <div class="flex-grow flex flex-col bg-gray-800">
+              <div class="relative w-full overflow-x-hiddenxxx flex-grow" style="height:50vh; min-height:40rem">
+                <div class="flex-grow px-2 " data-phx-component="3" id="phx-F25fPBctcLJLh3rx-3-0">
+                  <input id="counter_page_counter_type" name="counter_page[counter_type]" type="hidden" value="countdown_to_datetime">
+                  <div>
+                    <div id="date_picker">
+                      <label class="text-sm">Countdown to</label>
+                      <div class="mt-1 relative rounded-md shadow-sm">
+                        <input autocomplete="off" class="form-input block w-full sm:text-sm sm:leading-5 bg-gray-900 border-gray-900 text-gray-300 rounded-md flatpickr-input" id="datepicker-3u434879" name="counter_page_date" phx-hook="DatePicker" type="hidden" value="2023-07-05">
                       </div>
-        <div class="flex-grow px-2 " data-phx-component="3" id="phx-F25fPBctcLJLh3rx-3-0">
-          <input id="counter_page_counter_type" name="counter_page[counter_type]" type="hidden" value="countdown_to_datetime">
-          <div class="pt-3"></div>
-            <div>
-              <div phx-update="ignore" id="date_picker">
-                <label class="block text-sm font-medium leading-5 text-gray-400">Countdown to</label>
-                <div class="mt-1 relative rounded-md shadow-sm">
-                  <input autocomplete="off" class="form-input block w-full sm:text-sm sm:leading-5 bg-gray-900 border-gray-900 text-gray-300 rounded-md flatpickr-input" id="datepicker-3u434879" name="counter_page_date" phx-hook="DatePicker" type="hidden" value="2023-07-05">
-                </div>
-              </div>
-            </div>
-        
-            <div class="pt-1">
-              <div class="text-gray-400"><div class="mt-4">
-                <label class="block text-sm font-medium leading-5 text-gray-400" for="counter_page_time">Time</label>
-                <div class="mt-1 relative rounded-md shadow-sm">
-                  <input autocomplete="off" class="form-input block w-full sm:text-sm sm:leading-5 bg-gray-900 border-gray-900 text-gray-300 rounded-md flatpickr-input" id="timepicker" name="counter_page_time" phx-hook="DatePicker" type="hidden" value="2023-07-05" onchange="time_update(this)">
-                </div>
-                </div>
-              </div>
-            </div>
-        
-            <div class="mt-4">
-              <label class="block text-sm font-medium leading-5 text-gray-400" for="counter_page_timezone">Timezone</label>
-        
-              <select class="form-input block w-full sm:text-sm sm:leading-5 mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 bg-gray-900 border-gray-900 text-gray-300 shadow-inset focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 rounded-md rounder-md" id="timezoneSelect">
-                
-              </select>
-            </div>
-        
-        </div>
                     </div>
-        
-                    
-        
+                  </div>
+      
+                  <div class="pt-1">
+                    <div class="text-gray-400"><div class="mt-2">
+                      <label class="text-sm" for="counter_page_time">Time</label>
+                      <div class="mt-1 relative rounded-md shadow-sm">
+                        <input autocomplete="off" class="form-input block w-full sm:text-sm sm:leading-5 bg-gray-900 border-gray-900 text-gray-300 rounded-md flatpickr-input" id="timepicker" name="counter_page_time" phx-hook="DatePicker" type="hidden" value="2023-07-05" onchange="time_update(this)">
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="mt-4">
+                    <label class="text-sm" for="counter_page_timezone">Timezone</label>
+              
+                    <select class="form-input block w-full sm:text-sm sm:leading-5 mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 bg-gray-900 border-gray-900 text-gray-300 shadow-inset focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 rounded-md rounder-md" id="timezoneSelect">
                       
-        
+                    </select>
+                  </div>
+      
                 </div>
               </div>
-        
-            
+            </div>
+          </div>    
         </form>
-          </div>
+      </div>
 
-        <footer class="slds-card__footer">For use in Salesforce Marketing Cloud block SDK demos only</footer>
-        </article>
-		
+      <footer class="slds-card__footer">CountDown - 2023</footer>
+    </article>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script src="./main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+    
+        flatpickr(".form-input", {
+          enableTime: false,
+          noCalendar: false,
+          defaultDate: new Date().fp_incr(10)
+        });
+    
+        flatpickr('#timepicker', {
+          enableTime: true,
+          noCalendar: true,
+          dateFormat: "H:i",
+          time_24hr: true,
+          defaultDate: "12:00"
+        }); 
+      });
+    </script>
 	</body>
 </html>
